@@ -1,45 +1,22 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from './Navbar'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 const ViewProduct = () => {
-    const [product,changeProduct] = useState([
-        {
-            "productName":"HONEY",
-            "price":"36",
-            "category":"casaug",
-            "imgurl":"https://m.media-amazon.com/images/I/71I-cik1CyL._AC_UL1500_.jpg",
-            "description":"dshfuihuieshguihsiuodh8oih"   
-        },
-        {
-            "productName":"HONEY",
-            "price":"36",
-            "category":"casaug",
-            "imgurl":"https://m.media-amazon.com/images/I/71I-cik1CyL._AC_UL1500_.jpg",
-            "description":"dshfuihuieshguihsiuodh8oih"   
-        },
-        {
-            "productName":"HONEY",
-            "price":"36",
-            "category":"casaug",
-            "imgurl":"https://m.media-amazon.com/images/I/71I-cik1CyL._AC_UL1500_.jpg",
-            "description":"dshfuihuieshguihsiuodh8oih"   
-        },
-        {
-            "productName":"HONEY",
-            "price":"36",
-            "category":"casaug",
-            "imgurl":"https://m.media-amazon.com/images/I/71I-cik1CyL._AC_UL1500_.jpg",
-            "description":"dshfuihuieshguihsiuodh8oih"   
-        },
-        {
-            "productName":"HONEY",
-            "price":"36",
-            "category":"casaug",
-            "imgurl":"https://m.media-amazon.com/images/I/71I-cik1CyL._AC_UL1500_.jpg",
-            "description":"dshfuihuieshguihsiuodh8oih"   
-        }
-    ])
+    const [product,changeProduct] = useState([])
+    const fetchData = ()=>{
+        axios.post("http://localhost:8080/view").then(
+            (response)=>{
+                changeProduct(response.data)
+            }
+        ).catch(
+            (error)=>{
+                alert(error.message)
+            }
+        ).finally()
+    }
+    useEffect(()=>{fetchData()},[])
   return (
     <div>
         <Navbar/>
