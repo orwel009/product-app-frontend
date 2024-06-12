@@ -16,13 +16,12 @@ const AddProduct = () => {
         changeData({...data,[event.target.name]:event.target.value})
     }
     const readValue = ()=>{
-        // console.log(data)
         axios.post("http://localhost:8080/add",data).then(
             (response)=>{
                 if (response.data.status === "success") {
-                    alert("Product Added successfully")
+                    alert("Product Added")
                 } else {
-                 alert("An error occured")   
+                    alert("An error occured")
                 }
             }
         ).catch(
